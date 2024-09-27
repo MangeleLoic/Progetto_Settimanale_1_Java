@@ -2,7 +2,6 @@ public abstract class ElementoMultimediale implements Play {
     protected String titolo;
     protected int durata;
 
-
     public ElementoMultimediale(String titolo, int durata) {
         this.titolo = titolo;
         this.durata = durata;
@@ -26,5 +25,6 @@ public abstract class ElementoMultimediale implements Play {
 
     @Override
     public abstract void play();
-}
 
+
+}
