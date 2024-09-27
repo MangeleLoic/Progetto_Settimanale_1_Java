@@ -33,6 +33,12 @@ public class Video extends ElementoMultimediale {
     public void aumentaLuminosita() {
         if (luminosita < 10) {
             luminosita++;
+            String titolo = super.getTitolo();
+            int durata = super.getDurata();
+
+            for (int i = 0; i < durata; i++) {
+                System.out.println(titolo + " " + "!".repeat(volume) + " " + "*".repeat(luminosita));
+            }
 
         } else {
             System.out.println("Luminosità già al massimo.");
@@ -42,6 +48,12 @@ public class Video extends ElementoMultimediale {
     public void diminuisciLuminosita() {
         if (luminosita > 0) {
             luminosita--;
+            String titolo = super.getTitolo();
+            int durata = super.getDurata();
+
+            for (int i = 0; i < durata; i++) {
+                System.out.println(titolo + " " + "!".repeat(volume) + " " + "*".repeat(luminosita));
+            }
 
         } else {
             System.out.println("Luminosità già al minimo.");
@@ -50,10 +62,22 @@ public class Video extends ElementoMultimediale {
 
     public void abbassaVolume() {
         if (volume > 0) volume--;
+        String titolo = super.getTitolo();
+        int durata = super.getDurata();
+
+        for (int i = 0; i < durata; i++) {
+            System.out.println(titolo + " " + "!".repeat(volume) + " " + "*".repeat(luminosita));
+        }
     }
 
     public void alzaVolume() {
         volume++;
+        String titolo = super.getTitolo();
+        int durata = super.getDurata();
+
+        for (int i = 0; i < durata; i++) {
+            System.out.println(titolo + " " + "!".repeat(volume) + " " + "*".repeat(luminosita));
+        }
     }
 
 

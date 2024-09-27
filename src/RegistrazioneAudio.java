@@ -21,10 +21,22 @@ public class RegistrazioneAudio extends ElementoMultimediale {
 
     public void abbassaVolume() {
         if (volume > 0) volume--;
+        String titolo = super.getTitolo();
+        int durata = super.getDurata();
+
+        for (int i = 0; i < durata; i++) {
+            System.out.println(titolo + " " + "!".repeat(volume));
+        }
     }
 
     public void alzaVolume() {
         volume++;
+        String titolo = super.getTitolo();
+        int durata = super.getDurata();
+
+        for (int i = 0; i < durata; i++) {
+            System.out.println(titolo + " " + "!".repeat(volume));
+        }
     }
 
 

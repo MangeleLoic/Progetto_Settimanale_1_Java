@@ -27,11 +27,23 @@ public class Immagine extends ElementoMultimediale {
 
     public void aumentaLuminosita() {
         luminosita++;
+        String titolo = super.getTitolo();
+        int durata = super.getDurata();
+
+        for (int i = 0; i < durata; i++) {
+            System.out.println(titolo + " " + "*".repeat(luminosita));
+        }
     }
 
     public void diminuisciLuminosita() {
         if (luminosita > 0) {
             luminosita--;
+            String titolo = super.getTitolo();
+            int durata = super.getDurata();
+
+            for (int i = 0; i < durata; i++) {
+                System.out.println(titolo + " " + "*".repeat(luminosita));
+            }
         }
     }
 }
