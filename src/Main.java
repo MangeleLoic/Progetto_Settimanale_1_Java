@@ -51,25 +51,32 @@ public class Main {
             }
         }
 
-        while (true) {
-            System.out.println("Inserisci il numero dell'elemento da eseguire (1-5) o 0 per terminare:");
+        System.out.println("--------MODIFICA LUMINOSITA E VOLUME DEGLI ELEMENTI GIA CREATI--------");
+
+        boolean running = true;
+        while (running) {
+            System.out.println("Inserisci il numero dell'elemento da modificare (1-5) o 0 per terminare:");
             int scelta = scanner.nextInt();
 
             if (scelta == 0) {
                 System.out.println("Termina il programma.");
-                break;
+                running = false;
             } else if (scelta >= 1 && scelta <= 5) {
                 ElementoMultimediale elementoDaRiprodurre = elementi[scelta - 1];
                 if (elementoDaRiprodurre != null) {
                     if (elementoDaRiprodurre instanceof Immagine) {
                         ((Immagine) elementoDaRiprodurre).show();
+                        adjustLuminosita((Immagine) elementoDaRiprodurre, scanner);
                     } else {
                         elementoDaRiprodurre.play();
-                    }
-                    if (elementoDaRiprodurre instanceof Video) {
-                        adjustLuminosita((Video) elementoDaRiprodurre, scanner);
-                    } else if (elementoDaRiprodurre instanceof Immagine) {
-                        adjustLuminosita((Immagine) elementoDaRiprodurre, scanner);
+                        if (elementoDaRiprodurre instanceof Video) {
+                            adjustLuminosita((Video) elementoDaRiprodurre, scanner);
+                        }
+                        if (elementoDaRiprodurre instanceof Video) {
+                            adjustVolume((Video) elementoDaRiprodurre, scanner);
+                        } else if (elementoDaRiprodurre instanceof RegistrazioneAudio) {
+                            adjustVolume((RegistrazioneAudio) elementoDaRiprodurre, scanner);
+                        }
                     }
                 } else {
                     System.out.println("Elemento non ancora creato.");
@@ -79,22 +86,23 @@ public class Main {
             }
         }
 
-
+        scanner.close();
     }
 
     private static void adjustLuminosita(Video video, Scanner scanner) {
-        while (true) {
+        boolean adjusting = true;
+        while (adjusting) {
             System.out.println("Vuoi regolare la luminosità del video? (1: Aumenta, 2: Diminuisci, 0: Esci)");
             int sceltaLuminosita = scanner.nextInt();
 
             if (sceltaLuminosita == 0) {
-                break;
+                adjusting = false;
             } else if (sceltaLuminosita == 1) {
                 video.aumentaLuminosita();
-                System.out.println("Luminosità aumentata a: " + video.getLuminosita());
+                System.out.println("Luminosità attuale: " + video.getLuminosita());
             } else if (sceltaLuminosita == 2) {
                 video.diminuisciLuminosita();
-                System.out.println("Luminosità diminuita a: " + video.getLuminosita());
+                System.out.println("Luminosità attuale: " + video.getLuminosita());
             } else {
                 System.out.println("Scelta non valida.");
             }
@@ -102,18 +110,59 @@ public class Main {
     }
 
     private static void adjustLuminosita(Immagine immagine, Scanner scanner) {
-        while (true) {
+        boolean adjusting = true;
+        while (adjusting) {
             System.out.println("Vuoi regolare la luminosità dell'immagine? (1: Aumenta, 2: Diminuisci, 0: Esci)");
             int sceltaLuminosita = scanner.nextInt();
 
             if (sceltaLuminosita == 0) {
-                break;
+                adjusting = false;
             } else if (sceltaLuminosita == 1) {
                 immagine.aumentaLuminosita();
-                System.out.println("Luminosità aumentata a: " + immagine.getLuminosita());
+                System.out.println("Luminosità attuale: " + immagine.getLuminosita());
             } else if (sceltaLuminosita == 2) {
                 immagine.diminuisciLuminosita();
-                System.out.println("Luminosità diminuita a: " + immagine.getLuminosita());
+                System.out.println("Luminosità attuale: " + immagine.getLuminosita());
+            } else {
+                System.out.println("Scelta non valida.");
+            }
+        }
+    }
+
+    private static void adjustVolume(RegistrazioneAudio audio, Scanner scanner) {
+        boolean adjusting = true;
+        while (adjusting) {
+            System.out.println("Vuoi regolare il volume dell'audio? (1: Aumenta, 2: Diminuisci, 0: Esci)");
+            int sceltaVolume = scanner.nextInt();
+
+            if (sceltaVolume == 0) {
+                adjusting = false;
+            } else if (sceltaVolume == 1) {
+                audio.alzaVolume();
+                System.out.println("Volume attuale: " + audio.getVolume());
+            } else if (sceltaVolume == 2) {
+                audio.abbassaVolume();
+                System.out.println("Volume attuale: " + audio.getVolume());
+            } else {
+                System.out.println("Scelta non valida.");
+            }
+        }
+    }
+
+    private static void adjustVolume(Video video, Scanner scanner) {
+        boolean adjusting = true;
+        while (adjusting) {
+            System.out.println("Vuoi regolare il volume del video? (1: Aumenta, 2: Diminuisci, 0: Esci)");
+            int sceltaVolume = scanner.nextInt();
+
+            if (sceltaVolume == 0) {
+                adjusting = false;
+            } else if (sceltaVolume == 1) {
+                video.alzaVolume();
+                System.out.println("Volume attuale: " + video.getVolume());
+            } else if (sceltaVolume == 2) {
+                video.abbassaVolume();
+                System.out.println("Volume attuale: " + video.getVolume());
             } else {
                 System.out.println("Scelta non valida.");
             }

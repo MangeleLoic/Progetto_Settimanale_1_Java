@@ -48,6 +48,15 @@ public class Video extends ElementoMultimediale {
         }
     }
 
+    public void abbassaVolume() {
+        if (volume > 0) volume--;
+    }
+
+    public void alzaVolume() {
+        volume++;
+    }
+
+
     @Override
     public void play() {
         String titolo = super.getTitolo();
